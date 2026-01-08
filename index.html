@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Estratégico - Advocacia</title>
+    <style>
+        :root {
+            --primary: #0f172a; /* Azul Navy Profundo */
+            --secondary: #b99259; /* Dourado Jurídico */
+            --accent: #334155; /* Cinza Chumbo */
+            --light: #f8fafc; /* Fundo Claro */
+            --success: #16a34a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: var(--secondary);
+        }
+
+        /* Sections General */
+        section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Estratégia */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        /* Tático - Departamentos */
+        .dept-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .dept-col {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: 4px solid var(--accent);
+            padding: 20px;
+        }
+
+        .dept-col.comercial { border-top-color: var(--success); }
+        .dept-col.financeiro { border-top-color: var(--secondary); }
+
+        .dept-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Funil de Vendas */
+        .funnel-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .funnel-step {
+            flex: 1;
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+            position: relative;
+            min-width: 150px;
+        }
+
+        .funnel-step::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .funnel-step:last-child::after {
+            content: "";
+        }
+
+        .funnel-step h4 { color: var(--secondary); margin-bottom: 5px; }
+        .funnel-step p { font-size: 0.9rem; }
+
+        /* Metodologia */
+        .methodology-list {
+            counter-reset: phase-counter;
+        }
+
+        .phase {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background: var(--light);
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .phase::before {
+            counter-increment: phase-counter;
+            content: counter(phase-counter);
+            background: var(--secondary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .dept-grid { grid-template-columns: 1fr; }
+            .funnel-container { flex-direction: column; }
+            .funnel-step { width: 100%; margin-bottom: 10px; }
+            .funnel-step::after { content: "↓"; right: 50%; top: auto; bottom: -25px; transform: translateX(50%); }
+            .funnel-step:last-child { margin-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Plano Estratégico Jurídico 2024/2025</h1>
+        <p>Transição para Prospecção Ativa & Receita Recorrente</p>
+    </header>
+
+    <div class="container">
+
+        <section id="estrategico">
+            <h2>1. Estratégia & Visão</h2>
+            <div class="strategy-grid">
+                <div class="card">
+                    <h3>Posicionamento</h3>
+                    <p><strong>De:</strong> Escritório reativo (Indicação)</p>
+                    <p><strong>Para:</strong> Boutique de Soluções Empresariais e Sucessórias.</p>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #ddd;">
+                    <p><em>Foco:</em> Blindagem Patrimonial, Redução de Passivo e Planejamento Sucessório.</p>
+                </div>
+                <div class="card">
+                    <h3>Nova Precificação (Híbrida)</h3>
+                    <ul>
+                        <li><strong>Setup (Entrada):</strong> Cobre estudo inicial e elaboração.</li>
+                        <li><strong>Manutenção (Recorrente):</strong> Taxa mensal para disponibilidade e monitoramento constante.</li>
+                        <li><strong>Êxito (Performance):</strong> Percentual ao final do processo.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tatico">
+            <h2>2. Estrutura Tática (Departamentos)</h2>
+            <div class="dept-grid">
+                <div class="dept-col comercial">
+                    <div class="dept-title">Comercial</div>
+                    <ul>
+                        <li><strong>Foco:</strong> Caçador (Hunter).</li>
+                        <li><strong>Ferramenta:</strong> CRM Obrigatório.</li>
+                        <li><strong>Canais:</strong> Google Ads (Família/Sucessões) + LinkedIn/Cold Call (Empresarial).</li>
+                        <li><strong>Meta:</strong> Transformar "tiradores de dúvida" em reuniões de diagnóstico.</li>
+                    </ul>
+                </div>
+                <div class="dept-col operacional">
+                    <div class="dept-title">Atendimento</div>
+                    <ul>
+                        <li><strong>Entrega:</strong> Metodologia de 5 Fases.</li>
+                        <li><strong>Diferencial:</strong> Atuação pró-ativa (não esperar o juiz).</li>
+                        <li><strong>Relatórios:</strong> Mensais (justificam a taxa de manutenção).</li>
+                    </ul>
+                </div>
+                <div class="dept-col financeiro">
+                    <div class="dept-title">Financeiro</div>
+                    <ul>
+                        <li><strong>Cobrança:</strong> Régua automatizada de mensalidades.</li>
+                        <li><strong>Contratos:</strong> Padronização da cláusula de recorrência.</li>
+                        <li><strong>Fluxo:</strong> Receita mensal cobre custo fixo; Êxito é lucro/bônus.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="funnel">
+            <h2>3. Novo Funil de Vendas (Operacional)</h2>
+            <div class="funnel-container">
+                <div class="funnel-step">
+                    <h4>1. Prospecção</h4>
+                    <p>Ads + Outbound<br>(Empresas Alvo)</p>
+                </div>
+                <div class="funnel-step">
+                    <h4>2. Filtro (SDR)</h4>
+                    <p>Qualificação rápida<br>(Tem perfil?)</p>
+                </div>
+                <div class="funnel-step">
+                    <h4>3. Diagnóstico</h4>
+                    <p>Reunião de Valor<br>(Apresenta Solução)</p>
+                </div>
+                <div class="funnel-step">
+                    <h4>4. Proposta</h4>
+                    <p>Envio em 24h<br>Setup + Mensal</p>
+                </div>
+                <div class="funnel-step">
+                    <h4>5. Follow-up</h4>
+                    <p>CRM Ativo<br>(Não deixar esfriar)</p>
+                </div>
+                <div class="funnel-step" style="background-color: var(--success);">
+                    <h4>6. Contrato</h4>
+                    <p>Fechamento &<br>Onboarding</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="metodologia">
+            <h2>4. Metodologia de Trabalho (Entrega)</h2>
+            <div class="methodology-list">
+                <div class="phase">
+                    <div><strong>Imersão:</strong> Reunião com as partes para elaboração de relatório detalhado dos fatos e indicação de documentos.</div>
+                </div>
+                <div class="phase">
+                    <div><strong>Estratégia Técnica:</strong> Elaboração da Inicial e da Defesa (Tese Jurídica).</div>
+                </div>
+                <div class="phase">
+                    <div><strong>Combate:</strong> Acompanhamento nas audiências (Defesa presencial/online).</div>
+                </div>
+                <div class="phase">
+                    <div><strong>Articulação:</strong> Despacho com magistrado para indicação dos pontos controvertidos (Influência).</div>
+                </div>
+                <div class="phase">
+                    <div><strong>Vigilância:</strong> Acompanhamento do processo e recursos até a segunda instância.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Documento Estratégico Interno - Gerado para Reestruturação Comercial</p>
+    </footer>
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano de Tráfego - Advocacia</title>
+    <style>
+        :root {
+            --primary: #0f172a; /* Azul Navy Profundo */
+            --secondary: #b99259; /* Dourado Jurídico */
+            --accent: #334155; /* Cinza Chumbo */
+            --light: #f8fafc; /* Fundo Claro */
+            --success: #16a34a;
+            --google: #4285F4;
+            --meta: #C13584;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header (Mantido do anterior) */
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--secondary);
+            margin-bottom: 40px;
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; opacity: 0.9; color: var(--secondary); }
+
+        /* Sections General */
+        section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--secondary);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.3rem; }
+
+        /* PREPARAÇÃO (Checklist Style) */
+        .prep-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .check-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid var(--success);
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .check-icon {
+            color: var(--success);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* CANAIS (Grid de Cards) */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .channel-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.2s;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+            margin-right: 5px;
+        }
+
+        .bg-google { background-color: var(--google); }
+        .bg-meta { background-color: var(--meta); }
+
+        .keyword-box {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-top: 10px;
+            font-family: monospace;
+        }
+
+        /* REMARKETING */
+        .remarketing-box {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .remarketing-content { max-width: 70%; }
+        .remarketing-icon { font-size: 3rem; opacity: 0.2; }
+
+        /* ORÇAMENTO (Tabela) */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        tr:nth-child(even) { background-color: #f8fafc; }
+        tr:hover { background-color: #f1f5f9; }
+
+        .money { font-weight: bold; color: var(--success); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .channel-grid { grid-template-columns: 1fr; }
+            .remarketing-box { flex-direction: column; text-align: center; }
+            .remarketing-content { max-width: 100%; margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Plano de Tráfego & Captação</h1>
+        <p>Estratégia de Marketing Jurídico 2024/2025</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>1. Preparação (Fundação)</h2>
+            <div class="prep-grid">
+                <div class="check-card">
+                    <h3>Landing Pages (LPs)</h3>
+                    <div class="check-item"><span class="check-icon">✓</span> LP 01: Empresarial (Blindagem/Passivo)</div>
+                    <div class="check-item"><span class="check-icon">✓</span> LP 02: Sucessões (Holding/Proteção)</div>
+                    <div class="check-item"><span class="check-icon">✓</span> LP 03: Geral/Cível (Conversão Rápida)</div>
+                </div>
+                <div class="check-card">
+                    <h3>Rastreamento (Tracking)</h3>
+                    <div class="check-item"><span class="check-icon">✓</span> Instalação Google Analytics 4</div>
+                    <div class="check-item"><span class="check-icon">✓</span> Pixel do Facebook + API de Conversão</div>
+                    <div class="check-item"><span class="check-icon">✓</span> Meta de Conversão: "Clique WhatsApp"</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Estratégia de Canais</h2>
+            <div class="channel-grid">
+                
+                <div class="channel-card" style="border-top: 4px solid var(--primary);">
+                    <span class="platform-badge bg-google">Google Ads</span>
+                    <h3>Empresarial (Recorrência)</h3>
+                    <p><strong>Foco:</strong> B2B, Donos de empresas com urgência.</p>
+                    <hr style="margin: 10px 0; border:0; border-top:1px solid #eee;">
+                    <p style="font-size:0.9rem"><strong>Copy:</strong> "Sua empresa foi processada? Reduza passivos."</p>
+                    <div class="keyword-box">
+                        "Advogado empresarial"<br>
+                        "Defesa trabalhista empresa"<br>
+                        "Contratos empresariais"
+                    </div>
+                </div>
+
+                <div class="channel-card" style="border-top: 4px solid var(--secondary);">
+                    <span class="platform-badge bg-google">Google Ads</span>
+                    <span class="platform-badge bg-meta">Instagram Ads</span>
+                    <h3>Sucessões (Ticket Alto)</h3>
+                    <p><strong>Foco:</strong> Educação (Holding) e Urgência (Inventário).</p>
+                    <hr style="margin: 10px 0; border:0; border-top:1px solid #eee;">
+                    <p style="font-size:0.9rem"><strong>Copy:</strong> "Evite que o inventário consuma 20% do patrimônio."</p>
+                    <div class="keyword-box">
+                        "Advogado inventário"<br>
+                        "Holding Familiar"<br>
+                        "Planejamento Sucessório"
+                    </div>
+                </div>
+
+                <div class="channel-card" style="border-top: 4px solid var(--success);">
+                    <span class="platform-badge bg-google">Google Ads</span>
+                    <h3>Cível & Família (Caixa)</h3>
+                    <p><strong>Foco:</strong> Hiper-local (Raio 30km). Alta intenção.</p>
+                    <hr style="margin: 10px 0; border:0; border-top:1px solid #eee;">
+                    <p style="font-size:0.9rem"><strong>Copy:</strong> Extensão de chamada direta para o celular.</p>
+                    <div class="keyword-box">
+                        "Advogado divórcio"<br>
+                        "Ação de cobrança"<br>
+                        "Regularização imóveis"
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>3. O Segredo (Remarketing)</h2>
+            <div class="remarketing-box">
+                <div class="remarketing-content">
+                    <h3>Não perca quem não agendou</h3>
+                    <p>Estratégia para "perseguir" leads que visitaram o site mas não chamaram no WhatsApp nos últimos 30 dias. Uso de vídeos institucionais e provas sociais no Instagram/Facebook.</p>
+                </div>
+                <div class="remarketing-icon">↺</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Distribuição de Verba (Sugestão)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campanha</th>
+                            <th>Foco</th>
+                            <th>Canal</th>
+                            <th>Verba Sugerida</th>
+                            <th>KPI Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Empresarial</strong></td>
+                            <td>Leads B2B</td>
+                            <td>Google Pesquisa</td>
+                            <td class="money">40%</td>
+                            <td>Custo p/ Lead (CPL)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sucessões</strong></td>
+                            <td>Inventário/Holding</td>
+                            <td>Google + Insta</td>
+                            <td class="money">30%</td>
+                            <td>Custo p/ Lead (CPL)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cível/Família</strong></td>
+                            <td>Volume Rápido</td>
+                            <td>Google Local</td>
+                            <td class="money">20%</td>
+                            <td>Custo p/ Clique (CPC)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Remarketing</strong></td>
+                            <td>Recuperação</td>
+                            <td>Meta (Insta/Face)</td>
+                            <td class="money">10%</td>
+                            <td>Frequência</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Anexo ao Plano Estratégico - Marketing & Growth</p>
+    </footer>
+
+</body>
+</html>
